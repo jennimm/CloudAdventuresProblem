@@ -15,6 +15,12 @@ newProvider = True
 count = 0
 providerCount = 0
 
+slovak = []
+greece = []
+italy = []
+swede = []
+bulgaria = []
+
 sectionCount = 0
 fileData  = open(fileChosen,'r')
 for line in fileData:
@@ -52,10 +58,21 @@ for line in fileData:
                 array.append(line)
     else:
         line = line.rstrip("\n")
-        projects.append(line)
+
+        if "Greece" in line:
+            greece.append(line)
+        if "Slovakia" in line:
+            slovak.append(line)
+        if "Italy" in line:
+            italy.append(line)
+        if "Sweden" in line:
+            swede.append(line)
+        if "Bulgaria" in line:
+            bulgaria.append(line)
+
 
 print(serviceNames)
 print(countries)
 print(providers)
 print(providerCountryInfo)
-print(projects)
+print(greece)
