@@ -1,5 +1,7 @@
-data= open('first_adventure.in','r')
+fileChosen = "first_adventure.in"
+data= open(fileChosen,'r')
 first = data.readline().split()
+data.close()
 print(first)
 
 serviceNames = []
@@ -9,15 +11,12 @@ providerCountryInfo = []
 array = []
 projects = []
 countryInfo = []
-#servicesFound = False
-#providersSection = False
-#providerAdded = False
 newProvider = True
 count = 0
 providerCount = 0
 
 sectionCount = 0
-fileData  = open('first_adventure.in','r')
+fileData  = open(fileChosen,'r')
 for line in fileData:
     line = str(line)
     if sectionCount == 0:
@@ -25,13 +24,10 @@ for line in fileData:
     elif sectionCount == 1:
         line = line.rstrip("\n")
         serviceNames.append(line.split(" "))
-        #servicesFound = True
         sectionCount += 1
     elif sectionCount == 2:
         line = line.rstrip("\n")
         countries = line.split(" ")
-        #servicesFound = False
-        #providersSection = True
         sectionCount+= 1
     elif sectionCount == 3:
         line = line.rstrip("\n")
@@ -57,6 +53,7 @@ for line in fileData:
     else:
         line = line.rstrip("\n")
         projects.append(line)
+
 print(serviceNames)
 print(countries)
 print(providers)
