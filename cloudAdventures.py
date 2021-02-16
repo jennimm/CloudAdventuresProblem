@@ -18,23 +18,17 @@ bulgaria = []
 
 sectionCount = 0
 fileData  = open(fileChosen,'r')
+V, S, C, P = (int(x) for x in fileData.readline().split())
+serviceNames = fileData.readline().split()
+countries = fileData.readline().split()
 for line in fileData:
     line = str(line)
-    if sectionCount == 0:
-        first = line
+    if (sectionCount == 0) or (sectionCount == 1) or(sectionCount == 2):
         sectionCount += 1
-    elif sectionCount == 1:
-        line = line.rstrip("\n")
-        serviceNames.append(line.split(" "))
-        sectionCount += 1
-    elif sectionCount == 2:
-        line = line.rstrip("\n")
-        countries = line.split(" ")
-        sectionCount+= 1
     elif sectionCount == 3:
         line = line.rstrip("\n")
         if newProvider == True:
-            if len(providers)+1 == int(first[0]):
+            if len(providers)+1 == V:
                 sectionCount += 1
             providers.append(line[:-2])
             noCountries = line[len(line)-1:]
