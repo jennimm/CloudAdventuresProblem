@@ -1,7 +1,5 @@
 fileChosen = "first_adventure.in"
 
-serviceNames = []
-countries = []
 providers = []
 providerCountryInfo = []
 array = []
@@ -19,6 +17,7 @@ bulgaria = []
 sectionCount = 0
 fileData  = open(fileChosen,'r')
 V, S, C, P = (int(x) for x in fileData.readline().split())
+print(C)
 serviceNames = fileData.readline().split()
 countries = fileData.readline().split()
 for line in fileData:
@@ -31,7 +30,6 @@ for line in fileData:
             if len(providers)+1 == V:
                 sectionCount += 1
             providers.append(line[:-2])
-            noCountries = line[len(line)-1:]
             newProvider = False
         else: 
             count += 1
@@ -40,7 +38,7 @@ for line in fileData:
                 countryInfo.append(array)
                 array = []
                 count = 0
-                if len(countryInfo) == int(noCountries):
+                if len(countryInfo) == C:
                     providerCountryInfo.append(countryInfo)
                     countryInfo = []
                     newProvider = True
