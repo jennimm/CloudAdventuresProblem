@@ -49,7 +49,7 @@ for line in fileData:
                 array = []
                 count = 0
                 if len(countryInfo) == int(noCountries):
-                    providerCountryInfo.append([countryInfo])
+                    providerCountryInfo.append(countryInfo)
                     countryInfo = []
                     newProvider = True
             else:
