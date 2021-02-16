@@ -22,14 +22,13 @@ serviceNames = fileData.readline().split()
 countries = fileData.readline().split()
 for line in fileData:
     line = str(line)
-    if (sectionCount == 0) or (sectionCount == 1) or(sectionCount == 2):
-        sectionCount += 1
-    elif sectionCount == 3:
+    if sectionCount == 0:
         line = line.rstrip("\n")
         if newProvider == True:
             if len(providers)+1 == V:
                 sectionCount += 1
             providers.append(line[:-2])
+            noRegions = line[len(line)-1] #
             newProvider = False
         else: 
             count += 1
@@ -38,7 +37,7 @@ for line in fileData:
                 countryInfo.append(array)
                 array = []
                 count = 0
-                if len(countryInfo) == C:
+                if len(countryInfo) == int(noRegions):
                     providerCountryInfo.append(countryInfo)
                     countryInfo = []
                     newProvider = True
