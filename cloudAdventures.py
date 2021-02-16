@@ -57,6 +57,28 @@ for line in fileData:
         if "Bulgaria" in line:
             bulgaria.append(line)
 
+price=999999
+out=[]
+data=greece[0].split()
+for i in range(len(data)):
+    unitsneeded=int(data[i+2])
+    
+    for j in range (len(providerCountryInfo)):
+        provider=providers[j]
+        for k in range (len(providerCountryInfo[j])):
+            value=providerCountryInfo[j][k][1].split()
+            if value[1]<price:
+                price=int(value[1])
+                unitsav=int(value[2])
+
+
+
+
+
+
+
+
+
 
 print(serviceNames)
 print(countries)
