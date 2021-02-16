@@ -1,15 +1,10 @@
 fileChosen = "first_adventure.in"
-data= open(fileChosen,'r')
-first = data.readline().split()
-data.close()
-print(first)
 
 serviceNames = []
 countries = []
 providers = []
 providerCountryInfo = []
 array = []
-projects = []
 countryInfo = []
 newProvider = True
 count = 0
@@ -26,6 +21,7 @@ fileData  = open(fileChosen,'r')
 for line in fileData:
     line = str(line)
     if sectionCount == 0:
+        first = line
         sectionCount += 1
     elif sectionCount == 1:
         line = line.rstrip("\n")
