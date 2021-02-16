@@ -57,31 +57,32 @@ for line in fileData:
         if "Bulgaria" in line:
             bulgaria.append(line)
 
-price=999999
-out=[]
 data=greece[0].split()
-for i in range(len(data)):
-    unitsneeded=int(data[i+2])
-    
-    for j in range (len(providerCountryInfo)):
+
+def solutionFinder(price, out, data, index, totalUnits, providerCountryInfo):
+    for j in range(len(providerCountryInfo)):
         provider=providers[j]
-        for k in range (len(providerCountryInfo[j])):
+        for k in range(len(providerCountryInfo[j])):
             value=providerCountryInfo[j][k][1].split()
-            if value[1]<price:
-                price=int(value[1])
+            if float(value[1]) < price and int(value[2]) != 0:
+                price=float(value[1])
                 unitsav=int(value[2])
+                index = k
+        if index != None:
+            out.append([j, index, unitsav])
+            totalUnits += unitsav
+            array = providerCountryInfo[j][index][1].split()
+            array[2] = '0'
+            string = " "
+            providerCountryInfo[j][index][1] = string.join(array)
+        if totalUnits >= unitsneeded:
+            return out
+        else:
+            price = 9999
+        if totalUnits < unitsneeded and j == len(providerCountryInfo)-1:
+            return solutionFinder(price, out, data, None, totalUnits, providerCountryInfo)
 
-
-
-
-
-
-
-
-
-
-print(serviceNames)
-print(countries)
-print(providers)
-print(providerCountryInfo)
-print(greece)
+##for the first service of the first project
+unitsneeded=int(data[2])
+out = solutionFinder(9999, [], data, None, 0, providerCountryInfo)
+print(out)
